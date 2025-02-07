@@ -1,22 +1,22 @@
 package br.edu.zup.school_db;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 
 @Entity
+@Table(name = "alunos")
 public class StudentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
+    @Column(name = "nome")
     private String name;
 
     @Range(min = 5, max = 150)
+    @Column(name = "idade")
     private Integer age;
 
     public StudentEntity() {}

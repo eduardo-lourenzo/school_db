@@ -1,5 +1,6 @@
 package br.edu.zup.school_db;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,53 +10,42 @@ import java.util.List;
 @RequestMapping("/alunos")
 public class SchoolController {
 
-    @RequestMapping("/jpa")
-    public static class JpaRequest {
+    @Autowired
+    private SchoolService schoolService;
 
-        @GetMapping
-        public ResponseEntity<List<StudentEntity>> getAllStudents() {
-            return null;
-        }
-
-        @GetMapping("/id/{id}")
-        public ResponseEntity<StudentEntity> getStudentById(@PathVariable Long id) {
-            return null;
-        }
-
-        @GetMapping("/name/{name}")
-        public ResponseEntity<List<StudentEntity>> getStudentByName(@PathVariable String name) {
-            return null;
-        }
-
-        @GetMapping("/age/{age}")
-        public ResponseEntity<List<StudentEntity>> getStudentByAge(@PathVariable Integer age) {
-            return null;
-        }
+    // JPA
+    @GetMapping("/jpa")
+    public ResponseEntity<List<StudentEntity>> getAllStudents() {
+        return ResponseEntity.ok().body(schoolService.getAllStudents());
+    }
+    @GetMapping("/jpa/id/{id}")
+    public ResponseEntity<StudentEntity> getStudentById(@PathVariable Long id) {
+        return ResponseEntity.ok().body(schoolService.getStudentById(id));
+    }
+    @GetMapping("/jpa/name/{name}")
+    public ResponseEntity<List<StudentEntity>> getStudentByName(@PathVariable String name) {
+        return ResponseEntity.ok().body(schoolService.getStudentByName(name));
+    }
+    @GetMapping("/jpa/age/{age}")
+    public ResponseEntity<List<StudentEntity>> getStudentByAge(@PathVariable Integer age) {
+        return ResponseEntity.ok().body(schoolService.getStudentByAge(age));
     }
 
-    @RequestMapping("/sql")
-    public static class SqlRequest {
-
-        @GetMapping
-        public ResponseEntity<List<StudentEntity>> getEverybodyStudents() {
-            return null;
-        }
-
-        @GetMapping("/id/{id}")
-        public ResponseEntity<StudentEntity> getStudentWhereId(@PathVariable Long id) {
-            return null;
-        }
-
-        @GetMapping("/name/{name}")
-        public ResponseEntity<List<StudentEntity>> getStudentWhereName(@PathVariable String name) {
-            return null;
-        }
-
-        @GetMapping("/age/{age}")
-        public ResponseEntity<List<StudentEntity>> getStudentWhereAge(@PathVariable Integer age) {
-            return null;
-        }
+    // SQL
+    @GetMapping("/sql")
+    public ResponseEntity<List<StudentEntity>> getEverybodyStudents() {
+        return ResponseEntity.ok().body(schoolService.getEverybodyStudents());
+    }
+    @GetMapping("/sql/id/{id}")
+    public ResponseEntity<StudentEntity> getStudentWhereId(@PathVariable Long id) {
+        return ResponseEntity.ok().body(schoolService.getStudentWhereId(id));
+    }
+    @GetMapping("/sql/name/{name}")
+    public ResponseEntity<List<StudentEntity>> getStudentWhereName(@PathVariable String name) {
+        return ResponseEntity.ok().body(schoolService.getStudentWhereName(name));
+    }
+    @GetMapping("/sql/age/{age}")
+    public ResponseEntity<List<StudentEntity>> getStudentWhereAge(@PathVariable Integer age) {
+        return ResponseEntity.ok().body(schoolService.getStudentWhereAge(age));
     }
 }
-
-
