@@ -33,7 +33,6 @@ INSERT INTO alunos (nome, idade) VALUES
 ('Fernanda Teixeira', 16),
 ('Leonardo Mendes', 14),
 ('Carolina Duarte', 17),
--- Novos alunos com idades entre 5 e 13 anos
 ('Arthur Borges', 5),
 ('Helena Farias', 6),
 ('Enzo Castro', 7),
